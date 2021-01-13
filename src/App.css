@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pagination {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-top: 100px;
 }
-
-.App-link {
-  color: #61dafb;
+.pagination ul {
+  list-style: none;
+  padding: 0px;
+  display: flex;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pagination ul li {
+  background: #845ec2;
+  padding: 10px 15px;
+  margin-right: 4px;
+  border-radius: 4px;
+  font-family: sans-serif;
+  color: #fff;
+  font-size: 1.1rem;
+  min-width: 20px;
+  text-align: center;
+  user-select: none;
+}
+.pagination ul li:last-child {
+  margin-right: 0px;
+}
+.pagination ul li:not(.active):not(.disabled) {
+  cursor: pointer;
+}
+.pagination ul li:not(.active):not(.disabled):hover {
+  background: #d65db1;
+}
+.pagination ul li:not(.active):not(.disabled):active {
+  background: #3e207c;
+}
+.pagination ul li.active {
+  background: #ff6f91;
+}
+.pagination ul li.disabled {
+  background: #fbeaff;
+  pointer-events: none;
 }

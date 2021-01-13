@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import createPagination from './Pagination';
+import React from 'react';
+import "./App.css";
 
-function App() {
+
+export default function App() {
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const { pagination } = createPagination({
+    numberOfArticles: 223,
+    articlesPerPage: 12,
+    numberOfButtons: 8,
+    currentPage
+  });
+
+  const handleClick = page => setCurrentPage(page);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="pagination">
+      <ul>
+        <li
+          className={`${pagination[0] === currentPage && "disabled"}`}
+          onClick={handleClick.bind(null, currentPage - 1)}
         >
-          Learn React
-        </a>
-      </header>
+          Prev
+        </li>
+        {pagination.map(page => (
+          <li
+            className={`${currentPage === page && "active"}`}
+            onClick={handleClick.bind(null, page)}
+          >
+            {page}
+          </li>
+        ))}
+        <li
+          className={`${pagination.reverse()[0] === currentPage && "disabled"}`}
+          onClick={handleClick.bind(null, currentPage + 1)}
+        >
+          Next
+        </li>
+      </ul>
     </div>
   );
 }
 
-export default App;
